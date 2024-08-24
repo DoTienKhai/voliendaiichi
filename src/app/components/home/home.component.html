@@ -34,20 +34,15 @@
                   aria-label="Slide 3"></button>
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
                   aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                  aria-label="Slide 5"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="3000">
-            <img src="./assets/img/img1.png" class="d-block w-100 h-100" alt="img1">
-          </div>
-          <div class="carousel-item" data-bs-interval="3000">
-            <img src="./assets/img/img2.png" class="d-block w-100 h-100" alt="img2">
-          </div>
-          <div class="carousel-item" data-bs-interval="3000">
-            <img src="./assets/img/img3.png" class="d-block w-100 h-100" alt="img2">
-          </div>
-          <div class="carousel-item" data-bs-interval="3000">
-            <img src="./assets/img/img4.png" class="d-block w-100 h-100" alt="img2">
-          </div>
+          @for (item of lsImagesCarousel; track item.url) {
+            <div class="carousel-item" [class.active]="item.url === lsImagesCarousel[0].url" data-bs-interval="3000">
+              <img src="{{ item.url }}" class="d-block w-100 h-100" [alt]="item.alt">
+            </div>
+          }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">
@@ -63,13 +58,70 @@
     </article>
     <article>
       <div class="bg-info text-center p-4">
-        <h2 class="text-uppercase text-danger fw-bold">giới thiệu bản thân chính dai-ichi</h2>
+        <h2 class="text-uppercase text-danger fw-bold">giới thiệu bản thân võ liên dai-ichi</h2>
         <hr class="text-danger fw-bold">
         <div class="row">
-          <div class="col-4">
-
-          </div>
+          @for (item of lsExperience; track item.name) {
+            <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+              <h2 class="text-center fw-bold text-danger text-uppercase">{{ item.name }}</h2>
+              <p class="text-center fw-bold fs-4" [ngClass]="{'mb-0': item.value2}">{{ item.value }}</p>
+              @if (item.value2) {
+                <p class="text-center fw-bold fs-4">{{ item.value2 }}</p>
+              }
+            </div>
+          }
         </div>
+      </div>
+    </article>
+    <article>
+      <div class="reason row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 left">
+          <div class="line"></div>
+          <h4 class="text-center fw-bold text-danger text-uppercase mt-2">{{ reasonTitle }}</h4>
+          <div class="line"></div>
+          <p class="mb-0 text-start">
+            {{ reasonParagraph }}
+          </p>
+          @for (item of lsReasonParagraph; track item.title) {
+            <p class="mb-0 text-start mt-2">{{ item.title }}</p>
+            <hr class="m-2">
+          }
+        </div>
+        <div class="row col-12 col-md-12 col-lg-6 right mt-4">
+          @for (item of lsImages; track item.url) {
+            <div class="col-6 gap-2 text-center">
+              <img [src]="item.url" [attr.alt]="item.content">
+              <p class="text-uppercase fw-bold mt-2">{{ item.content }}</p>
+            </div>
+          }
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex align-items-center justify-content-center">
+          <button class="btn btn-warning text-uppercase fw-bold gradient-button">tư vấn ngay</button>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <div class="package row">
+        <div class="col-12 left">
+          <div class="line d-block d-sm-none d-md-none d-lg-none"></div>
+          <h4 class="text-center fw-bold text-danger text-uppercase mt-2">{{ followPacks }}</h4>
+          <div class="line d-block d-sm-none d-md-none d-lg-none"></div>
+        </div>
+        @for (item of lsFollowPacks; track item.id) {
+          <div class="col-6 col-sm-3 col-md-3 col-lg-3 package-item">
+            <div class="package-box w-100 mh-100 mw-100 border rounded-bottom-5">
+              <img [src]="item.url" [alt]="item.content" class="mw-100 h-auto">
+              <div class="content ps-2 pe-2 pb-2">
+                <p class="text-uppercase text-center text-danger fw-bold mt-2">{{ item.title }}</p>
+                <p>{{ item.content }}</p>
+                <div class="d-flex align-items-center justify-content-center">
+                  <button class="btn btn-primary gradient-button text-uppercase custom-btn">chi tiết gói</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </article>
   </main>
