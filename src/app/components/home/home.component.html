@@ -1,5 +1,76 @@
-<div class="container">
-  <header class="d-flex">
-    <img src="https://w.ladicdn.com/s500x400/591e72e19d9be2016ec579a9/logo-dai-ichi-life-20240809071725-ps2wr.png" alt="" width="150" height="62">
+<div class="container-fluid home">
+  <header class="row">
+    <label for="" class="col-1 d-sm-block d-md-none d-lg-none pt-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+           class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+      </svg>
+    </label>
+    <div class="col-sm-11 col-md-4 col-lg-6 custom-img">
+      <div class="img-header"></div>
+    </div>
+    <div class="col-md-8 col-lg-6 d-sm-none d-md-block d-lg-block">
+      <div class="category">
+        <ul class="d-flex list-unstyled justify-content-between align-items-center mb-0 h-100">
+          @for (item of lsCategories; track item.id) {
+            <li [id]="item.id" class="fw-bold">
+              {{ item.name }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
   </header>
+  <main>
+    <article>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                  aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                  aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                  aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                  aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img src="./assets/img/img1.png" class="d-block w-100 h-100" alt="img1">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="./assets/img/img2.png" class="d-block w-100 h-100" alt="img2">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="./assets/img/img3.png" class="d-block w-100 h-100" alt="img2">
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img src="./assets/img/img4.png" class="d-block w-100 h-100" alt="img2">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </article>
+    <article>
+      <div class="bg-info text-center p-4">
+        <h2 class="text-uppercase text-danger fw-bold">giới thiệu bản thân chính dai-ichi</h2>
+        <hr class="text-danger fw-bold">
+        <div class="row">
+          <div class="col-4">
+
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
 </div>
