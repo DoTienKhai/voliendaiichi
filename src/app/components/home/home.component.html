@@ -1,16 +1,16 @@
-<div class="container-fluid home">
-  <header class="row">
-    <label for="" class="col-1 d-sm-block d-md-none d-lg-none pt-2">
+<div class="container-fluid home p-1 p-sm-4 p-md-4 p-lg-4 pt-2">
+  <header class="row d-flex align-items-center">
+    <label for="" class="col-2 d-sm-block d-md-none d-lg-none pt-2">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
            class="size-6">
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
       </svg>
     </label>
-    <div class="col-sm-11 col-11 col-md-4 col-lg-6 custom-img">
+    <div class="col-sm-10 col-10 col-md-4 col-lg-6 custom-img">
       <div class="img-header"></div>
     </div>
-    <div class="col-md-8 col-8 col-lg-6 d-none d-md-block d-lg-block">
+    <div class="col-md-7 col-8 col-lg-5 d-none d-md-block d-lg-block">
       <div class="category">
         <ul class="d-flex list-unstyled justify-content-between align-items-center mb-0 h-100">
           @for (item of lsCategories; track item.id) {
