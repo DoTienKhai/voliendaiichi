@@ -1,5 +1,5 @@
 .home {
-  padding: 20px 40px;
+  //padding: 20px 40px;
 
   & header {
     margin-bottom: 20px;
@@ -11,8 +11,8 @@
     }
 
     & .img-header {
-      width: 150px;
-      height: 62px;
+      width: 156px;
+      height: 63px;
 
       background-image: url(https://w.ladicdn.com/s500x400/591e72e19d9be2016ec579a9/logo-dai-ichi-life-20240809071725-ps2wr.png);
       background-size: cover;
@@ -47,9 +47,21 @@
 
 @media (max-width: 768px) {
   .home {
-    & .custom-img {
-      display: flex;
-      justify-content: center;
+    & header {
+      & .custom-img {
+        display: flex;
+        justify-content: center;
+
+        position: relative;
+      }
+
+      & .img-header {
+        position: absolute;
+        transform: translate(-30%, -36%);
+
+        width: 118px;
+        height: 48px;
+      }
     }
   }
 }
