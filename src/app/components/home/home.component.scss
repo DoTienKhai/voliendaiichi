@@ -1,0 +1,55 @@
+.home {
+  padding: 20px 60px;
+
+  & header {
+    margin-bottom: 20px;
+
+    & label {
+      & svg {
+        cursor: pointer;
+      }
+    }
+
+    & .img-header {
+      width: 150px;
+      height: 62px;
+
+      background-image: url(https://w.ladicdn.com/s500x400/591e72e19d9be2016ec579a9/logo-dai-ichi-life-20240809071725-ps2wr.png);
+      background-size: cover;
+    }
+
+    & .category {
+      height: 62px;
+
+      & li {
+        cursor: pointer;
+
+        &:hover {
+          color: orange;
+        }
+      }
+    }
+  }
+
+  & main {
+    & article {
+      margin-bottom: 20px;
+
+      & .bg-info {
+        width: 100%;
+        height: 260px;
+        background-image: url(/assets/img/bg-info.png);
+        background-size: cover;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home {
+    & .custom-img {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
