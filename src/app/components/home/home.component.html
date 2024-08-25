@@ -156,6 +156,121 @@
         </div>
       </div>
     </article>
+    <article>
+      <div class="signature row">
+        <div class="col-12 left">
+          <h2 class="text-center fw-bold text-danger text-uppercase mt-2">{{ signature }}</h2>
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+        </div>
+        <div class="row col-12 mt-4 row-gap-4 p-0 ps-4">
+          @for (item of lsSignature; track item.url) {
+            <div class="col-6 col-sm-4 col-md-4 col-lg-4">
+              <img [src]="item.url" [alt]="item.url" class="mw-100 h-auto">
+            </div>
+          }
+        </div>
+        <div class="col-12 row p-4">
+          <!--          <div class="col-4">-->
+          <img src="./assets/img/img_24.png" [alt]="'volien-daiichi'" class="mw-100 h-auto">
+          <!--          </div>-->
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="player row">
+        <div class="col-12 mb-4">
+          <h2 class="text-center fw-bold text-danger text-uppercase">{{ player }}</h2>
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+        </div>
+        <div class="col-12">
+          <img src="./assets/img/img_25.png" [alt]="'volien-daiichi'" class="mw-100 h-auto">
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <div class="choose-me row">
+        <div class="col-12">
+          <h2 class="text-center fw-bold text-dark text-uppercase">{{chosseMe}} <span class="text-danger">Võ Liên Dai-ichi</span></h2>
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+        </div>
+        <div class="col-11 ps-2 pe-2">
+          <ul>
+            @for (item of lsChosseMe; track item.title) {
+              <li class="fw-bold fs-6 mb-2">{{ item.title }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <div class="news row">
+        <div class="col-12">
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+          <h2 class="text-center fw-bold text-dark text-uppercase">{{news}} </h2>
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+        </div>
+        <div class="col-12">
+          <div class="text-center row row-gap-2">
+            @for (item of lsNews; track item.id) {
+              <div class="col-6 col-sm-6 col-md-6 col-lg-3 package-item">
+                <div class="package-box w-100 mh-100 mw-100 h-100 border rounded-bottom-5 d-flex flex-column" (click)="navigateBy(item.route)">
+                  <img [src]="item.url" [alt]="item.content" class="mw-100 h-auto">
+                  <div class="content ps-2 pe-2 pb-2 d-flex flex-column flex-shrink-1 flex-grow-1">
+                    <p class="text-uppercase text-center text-danger fw-bold mt-2">{{ item.title }}</p>
+                    <p>{{ item.content }}</p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article>
+      <div class="news row">
+        <div class="col-12">
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+          <h2 class="text-center fw-bold text-dark text-uppercase">{{customer}} </h2>
+          <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+        </div>
+        <div class="col-12">
+          <div id="carouselNews" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselNews" data-bs-slide-to="0" class="active"
+                      aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselNews" data-bs-slide-to="1"
+                      aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselNews" data-bs-slide-to="2"
+                      aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselNews" data-bs-slide-to="3"
+                      aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#carouselNews" data-bs-slide-to="4"
+                      aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+              @for (item of lsImagesCarousel; track item.url) {
+                <div class="carousel-item" [class.active]="item.url === lsImagesCarousel[0].url" data-bs-interval="3000">
+                  <img src="{{ item.url }}" class="d-block w-100 h-100" [alt]="item.alt">
+                </div>
+              }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews"
+                    data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselNews"
+                    data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
   </main>
 </div>
 

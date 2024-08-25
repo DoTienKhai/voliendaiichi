@@ -1,15 +1,15 @@
 import {Component, inject, TemplateRef} from '@angular/core';
 import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink, RouterModule} from "@angular/router";
 
 
 type ListFollowPack = {
-  id: number,
-  url: string,
-  title: string,
-  content: string,
-
+  id?: number,
+  url?: string,
+  title?: string,
+  content?: string,
+  route?: string,
 }
 
 @Component({
@@ -19,7 +19,6 @@ type ListFollowPack = {
     NgOptimizedImage,
     NgStyle,
     NgClass,
-    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -72,6 +71,48 @@ export class HomeComponent {
   ];
   public followPacks: string = 'các gói bảo hiểm được quan tâm nhất';
   public feedback: string = 'feedback khách hàng';
+  public signature: string = 'hình ảnh cô Liên ký hợp đồng và cskh';
+  public player: string = 'ca sĩ, diễn viên sử dụng bảo hiểm';
+  public chosseMe: string = 'những lý do chính bạn nên chọn';
+  public news: string = 'tin tức & sự kiện';
+  public customer: string = 'đối tác của chúng tôi';
+  public lsChosseMe: { title: string }[] = [
+    {title: 'Thủ tục bảo lãnh thuận tiện, thanh toán bồi thường nhanh gọn tại tất cả các bệnh viện từ tuyến huyến đến viện QT: Nhi Tw, Hồng Ngọc, Vinmec, Việt Pháp, 108...'},
+    {title: 'Thanh toán Claim trong vòng 24h.'},
+    {title: 'Phục vụ 24/7 trong suốt quá trình tham gia BH.'},
+    {title: 'Dùng thử không mất phí trong vòng 21 ngày.'},
+    {title: 'Kiến thức chuyên sâu và kinh nghiệm trong nghành bảo hiểm nhân thọ Việt Nam.'},
+    {title: 'Cam kết hỗ trợ khách hàng trước – trong – và sau khi tham gia bảo hiểm.'},
+    {title: 'Cam kết tư vấn trung thực cho bạn cái nhìn hoàn toàn khách quan về bảo hiểm nhân thọ.'},
+    {title: 'Cam kết đồng hành trọn đời cùng khách hàng.'},
+    {title: 'Cam kết đặt lợi ích khách hàng lên hàng đầu là tôn chỉ làm việc của chúng tôi.'},
+  ];
+  public lsNews: ListFollowPack[] = [
+    {
+      id: 1,
+      url: './assets/img/img_27.jpg',
+      title: 'Sử dụng app ngay - nhận điểm thưởng',
+      route: 'https://dai-ichi-life.com.vn/hoat-dong-kinh-doanh-15/daiichi-life-viet-nam-ra-mat-ung-dung-daiichi-connect-467'
+    },
+    {
+      id: 2,
+      url: './assets/img/img_28.jpg',
+      title: 'Công cụ lập kế hoạch bảo hiểm',
+      route: 'https://dai-ichi-life.com.vn/hoat-dong-kinh-doanh-15/dai-ichi-life-viet-nam-ra-mat-cong-cu-lap-ke-hoach-bao-hiem-2685'
+    },
+    {
+      id: 3,
+      url: './assets/img/img_29.jpeg',
+      title: 'Hợp tác chiến lược với Garmin',
+      route: 'https://suckhoedoisong.vn/dai-ichi-life-viet-nam-ky-hop-tac-chien-luoc-voi-garmin-169231130095954492.htm'
+    },
+    {
+      id: 4,
+      url: './assets/img/img_30.jpg',
+      title: 'Đem ánh sáng cho người nghèo',
+      route: 'https://dai-ichi-life.com.vn/hoat-dong-cong-dong-16/dai-ichi-life-viet-nam-tiep-tuc-trien-khai-chuong-trinh-phau-thuat-mat-dem-anh-sang-cho-nguoi-ngheo-2024-tai-tay-ninh-2732'
+    },
+  ];
   public lsFollowPacks: ListFollowPack[] = [
     {
       id: 1,
@@ -99,7 +140,7 @@ export class HomeComponent {
     },
   ];
 
-  public lsFeedbacks: {url: string, lock: boolean}[] = [
+  public lsFeedbacks: { url: string, lock: boolean }[] = [
     {url: './assets/img/img_10.jpg', lock: false},
     {url: './assets/img/img_11.png', lock: false},
     {url: './assets/img/img_12.png', lock: false},
@@ -108,7 +149,16 @@ export class HomeComponent {
     {url: './assets/img/img_15.png', lock: false},
     {url: './assets/img/img_16.png', lock: false},
     {url: './assets/img/img_17.png', lock: true},
-  ]
+  ];
+
+  public lsSignature: { url: string }[] = [
+    {url: './assets/img/img_18.png'},
+    {url: './assets/img/img_19.png'},
+    {url: './assets/img/img_20.png'},
+    {url: './assets/img/img_21.png'},
+    {url: './assets/img/img_22.png'},
+    {url: './assets/img/img_23.png'},
+  ];
 
   private readonly dialog = inject(MatDialog);
 
@@ -119,7 +169,17 @@ export class HomeComponent {
     });
   }
 
-  scrollTo(element: string): void {
-    (document.getElementById(element) as HTMLElement).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  public scrollTo(element: string): void {
+    (document.getElementById(element) as HTMLElement).scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
+  }
+
+  public navigateBy(link: string | undefined): void {
+    if (link) {
+      window.open(link);
+    }
   }
 }
