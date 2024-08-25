@@ -1,5 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, inject, TemplateRef} from '@angular/core';
 import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+
+
+type ListFollowPack = {
+  id: number,
+  url: string,
+  title: string,
+  content: string,
+
+}
 
 @Component({
   selector: 'app-home',
@@ -54,30 +64,40 @@ export class HomeComponent {
     {title: 'Thời gian giải quyết thủ tục chi trả bảo hiểm nhanh chóng.'},
   ];
   public followPacks: string = 'các gói bảo hiểm được quan tâm nhất';
-  public lsFollowPacks: {id: number, url: string, title: string, content: string }[] = [
+  public feedback: string = 'feedback khách hàng';
+  public lsFollowPacks: ListFollowPack[] = [
     {
       id: 1,
       url: './assets/img/img_6.png',
-      title: 'gói bảo hiểm độc lập cho con',
-      content: 'Khi gia đình của bạn có thêm sự hiện diện của những thiên thần nhỏ, bạn sẽ dành mọi tình yêu thương và quan tâm cho con thân yêu của mình và luôn mong muốn dành cho con những điều tốt đẹp nhất'
+      title: 'gói bh độc lập cho con',
+      content: 'Khi gia đình của bạn có thêm sự hiện diện của các thiên thần nhỏ, bạn sẽ dành mọi tình yêu thương, quan tâm cho con thân yêu của mình và luôn mong muốn dành cho con những điều tốt đẹp nhất'
     },
     {
       id: 2,
       url: './assets/img/img_7.png',
-      title: 'gói bảo hiểm cho mẹ và con',
+      title: 'gói bh cho mẹ và con',
       content: 'Một gia đình hạnh phúc khởi nguồn từ sự yêu thương và sức khỏe dồi dào của các thành viên trong gia đình. Song thật khó thảnh thơi về chi phí y tế khi bệnh tật thường đến không báo trước.'
     },
     {
       id: 3,
       url: './assets/img/img_8.png',
-      title: 'gói bảo hiểm cho ba và con',
+      title: 'gói bh cho ba và con',
       content: 'Ngoài các quyền lợi về bảo hiểm còn là sản phẩm bảo hiểm liên kết đầu tư, giúp bảo vệ tài chính vững chắc cho hiện tại và mang đến cơ hội tích lũy đầu tư, gia tăng tài sản hiệu quả cho tương lai.'
     },
     {
       id: 4,
       url: './assets/img/img_9.png',
-      title: 'gói bảo hiểm cho gia đình',
+      title: 'gói bh cho gia đình',
       content: 'Gia đình là tổ ấm, là nơi nuôi dưỡng và gắn kết các thành viên bằng tình cảm thiêng liêng. Để gìn giữ cuộc sống hạnh phúc, yêu thương không chỉ dừng lại ở lời nói mà còn là sự đảm bảo...'
     },
   ];
+
+  private readonly dialog = inject(MatDialog);
+
+  public openDialog(item: ListFollowPack, dialog: TemplateRef<unknown>): void {
+    this.dialog.open(dialog, {
+      width: '500px',
+      data: item,
+    });
+  }
 }
