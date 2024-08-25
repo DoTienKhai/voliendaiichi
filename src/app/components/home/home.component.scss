@@ -75,7 +75,7 @@
         border-radius: 8px;
         cursor: pointer;
         transition: background 1s, transform 1s;
-        animation: gradientAnimation 3s infinite alternate, scaleAnimation 3s infinite alternate;
+        animation: scaleAnimation 3s infinite alternate, gradientAnimation 3s infinite alternate ;
 
       }
 
