@@ -131,7 +131,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .home {
     & header {
       & .custom-img {
@@ -162,6 +162,11 @@
             }
           }
         }
+        //& .feedback{
+        //  & .feedback-media{
+        //    height: 80vh !important;
+        //  }
+        //}
       }
     }
   }
