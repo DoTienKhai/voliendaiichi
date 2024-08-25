@@ -1,6 +1,7 @@
 import {Component, inject, TemplateRef} from '@angular/core';
 import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
+import {RouterLink} from "@angular/router";
 
 
 type ListFollowPack = {
@@ -17,18 +18,24 @@ type ListFollowPack = {
   imports: [
     NgOptimizedImage,
     NgStyle,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  public lsCategories: { name: string, id: string }[] = [
-    {name: 'Trang chủ', id: 'home'},
-    {name: 'Sản phẩm', id: 'product'},
-    {name: 'Feedback', id: 'feedback'},
-    {name: 'Đăng ký', id: 'register'},
-    {name: 'Liên hệ', id: 'contact'},
+  public lsCategories: { name: string, href: string }[] = [
+    // {name: 'Trang chủ', id: 'home'},
+    // {name: 'Sản phẩm', id: 'product'},
+    // {name: 'Feedback', id: 'feedback'},
+    // {name: 'Đăng ký', id: 'register'},
+    // {name: 'Liên hệ', id: 'contact'},
+    {name: 'Trang chủ', href: 'home'},
+    {name: 'Sản phẩm', href: 'product'},
+    {name: 'Feedback', href: 'feedback'},
+    {name: 'Đăng ký', href: 'register'},
+    {name: 'Liên hệ', href: 'contact'},
   ];
 
   public lsExperience: { name: string, value: string, value2?: string }[] = [
@@ -99,5 +106,9 @@ export class HomeComponent {
       width: '500px',
       data: item,
     });
+  }
+
+  scrollTo(element: string): void {
+    (document.getElementById(element) as HTMLElement).scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 }

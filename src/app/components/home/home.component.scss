@@ -75,7 +75,7 @@
         border-radius: 8px;
         cursor: pointer;
         transition: background 1s, transform 1s;
-        animation: scaleAnimation 3s infinite alternate, gradientAnimation 3s infinite alternate ;
+        animation: scaleAnimation 3s infinite alternate, gradientAnimation 3s infinite alternate;
 
       }
 
@@ -89,9 +89,10 @@
       }
 
       & .package {
-        & .package-item{
+        & .package-item {
           min-height: 100%;
         }
+
         & .package-box {
           & .content {
             & button {
@@ -162,11 +163,20 @@
             }
           }
         }
-        //& .feedback{
-        //  & .feedback-media{
-        //    height: 80vh !important;
-        //  }
-        //}
+      }
+    }
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .home {
+    & main {
+      & article {
+        & .feedback {
+          & .feedback-media {
+            height: 100vh !important;
+          }
+        }
       }
     }
   }
