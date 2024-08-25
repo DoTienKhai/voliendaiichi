@@ -168,7 +168,33 @@
   }
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
+@media (min-width: 690px) and (max-width: 767px) {
+  .home {
+    & main {
+      & article {
+        & .feedback {
+          & .feedback-media {
+            height: 160vh !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 528px) and (max-width: 697px) {
+  .home {
+    & main {
+      & article {
+        & .feedback {
+          & .feedback-media {
+            height: 130vh !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 527px) {
   .home {
     & main {
       & article {
@@ -181,3 +207,4 @@
     }
   }
 }
+
