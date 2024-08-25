@@ -102,21 +102,23 @@
     </article>
 
     <article>
-      <div class="package row">
+      <div class="package row row-gap-2">
         <div class="col-12 left">
           <div class="line d-block d-sm-none d-md-none d-lg-none"></div>
-          <h4 class="text-center fw-bold text-danger text-uppercase mt-2">{{ followPacks }}</h4>
+          <h2 class="text-center fw-bold text-danger text-uppercase mt-2">{{ followPacks }}</h2>
           <div class="line d-block d-sm-none d-md-none d-lg-none"></div>
         </div>
         @for (item of lsFollowPacks; track item.id) {
-          <div class="col-6 col-sm-3 col-md-3 col-lg-3 package-item">
-            <div class="package-box w-100 mh-100 mw-100 border rounded-bottom-5">
+          <div class="col-6 col-sm-6 col-md-6 col-lg-3 package-item">
+            <div class="package-box w-100 mh-100 mw-100 h-100 border rounded-bottom-5 d-flex flex-column">
               <img [src]="item.url" [alt]="item.content" class="mw-100 h-auto">
-              <div class="content ps-2 pe-2 pb-2">
+              <div class="content ps-2 pe-2 pb-2 d-flex flex-column flex-shrink-1 flex-grow-1">
                 <p class="text-uppercase text-center text-danger fw-bold mt-2">{{ item.title }}</p>
                 <p>{{ item.content }}</p>
-                <div class="d-flex align-items-center justify-content-center">
-                  <button class="btn btn-primary gradient-button text-uppercase custom-btn">chi tiết gói</button>
+                <div class="d-flex align-items-center justify-content-center mt-auto">
+                  <button class="btn btn-primary gradient-button text-uppercase custom-btn"
+                          (click)="openDialog(item, dialogTemp)">chi tiết gói
+                  </button>
                 </div>
               </div>
             </div>
@@ -124,5 +126,32 @@
         }
       </div>
     </article>
+
+    <article>
+      <div class="feedback">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center fw-bold text-danger text-uppercase mt-2 mb-0">{{ feedback }}</h2>
+            <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-6 col-md-6 col-lg-3">
+            <iframe
+              src="https://www.facebook.com/plugins/video.php?height=476&amp;href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1668170833970469%2F&amp;show_text=false&amp;width=267&amp;t=0&amp;autoplay=1"
+              width="267" height="476"
+              style="border:none;overflow:hidden;object-fit:cover;width:100%;height:100%;min-height:100vh;"
+              scrolling="no" frameborder="0" allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+          </div>
+          <div class="col-6 col-md-6 col-lg-3">
+          </div>
+        </div>
+      </div>
+    </article>
   </main>
 </div>
+
+<ng-template #dialogTemp let-data>
+  {{ data }}
+</ng-template>
