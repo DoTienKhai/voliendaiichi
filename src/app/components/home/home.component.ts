@@ -99,6 +99,17 @@ export class HomeComponent {
     },
   ];
 
+  public lsFeedbacks: {url: string, lock: boolean}[] = [
+    {url: './assets/img/img_10.jpg', lock: false},
+    {url: './assets/img/img_11.png', lock: false},
+    {url: './assets/img/img_12.png', lock: false},
+    {url: './assets/img/img_13.png', lock: false},
+    {url: './assets/img/img_14.png', lock: false},
+    {url: './assets/img/img_15.png', lock: false},
+    {url: './assets/img/img_16.png', lock: false},
+    {url: './assets/img/img_17.png', lock: true},
+  ]
+
   private readonly dialog = inject(MatDialog);
 
   public openDialog(item: ListFollowPack, dialog: TemplateRef<unknown>): void {

@@ -145,21 +145,14 @@
               scrolling="no" frameborder="0" allowfullscreen="allowfullscreen"
               allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
           </div>
-          <div class="col-6 col-md-6 col-lg-3 mt-4">
-            <div>
-              <img src="./assets/img/img_10.jpg" [alt]="'sas'" class="mw-100 h-auto">
+          @for (item of lsFeedbacks; track item.url) {
+            <div class="col-6 col-md-6 col-lg-3 mt-4 d-block"
+                 [ngClass]="{'d-md-none': item.lock, 'd-lg-none': item.lock}">
+              <div>
+                <img [src]="item.url" [alt]="'sas'" class="mw-100 h-auto">
+              </div>
             </div>
-          </div>
-          <div class="col-6 col-md-6 col-lg-3 mt-4">
-            <div>
-              <img src="./assets/img/img_10.jpg" [alt]="'sas'" class="mw-100 h-auto">
-            </div>
-          </div>
-          <div class="col-6 col-md-6 col-lg-3 mt-4">
-            <div>
-              <img src="./assets/img/img_10.jpg" [alt]="'sas'" class="mw-100 h-auto">
-            </div>
-          </div>
+          }
         </div>
       </div>
     </article>
