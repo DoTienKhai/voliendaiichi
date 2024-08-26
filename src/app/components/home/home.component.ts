@@ -1,8 +1,8 @@
 import {Component, inject, TemplateRef} from '@angular/core';
-import {NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
+import {DatePipe, NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
-import {Router, RouterLink, RouterModule} from "@angular/router";
-
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 type ListFollowPack = {
   id?: number,
@@ -19,11 +19,17 @@ type ListFollowPack = {
     NgOptimizedImage,
     NgStyle,
     NgClass,
+    DatePipe,
+    ReactiveFormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  private ggLink: string = 'https://docs.google.com/forms/u/0/d/16ydbCsZZsjrWYoxRzFokT42HsuqEAL7QRBRi_Po1s3k/prefill';
+  public reactiveForm: FormGroup;
+  public endDate = new Date();
+  public timeNow = new Date();
   public lsCategories: { name: string, href: string }[] = [
     // {name: 'Trang chủ', id: 'home'},
     // {name: 'Sản phẩm', id: 'product'},
@@ -179,7 +185,50 @@ export class HomeComponent {
     {url: './assets/img/phuongdong.png'},
   ];
 
+  public lsInfor: { paragraph: string }[] = [
+    {
+      paragraph: 'Sau khi nhận được thông tin của bạn. Chúng tôi sẽ gọi lại cho bạn để xác nhận và lên lịch hẹn với bạn. Để chủ động hơn về thời gian của cả bạn và chúng tôi.'
+    },
+    {
+      paragraph: 'Chúng tôi cần một số thông tin của bạn để thiết kế gói bảo hiểm. Hãy điền vào bảng đăng ký thông tin bên dưới. Thông tin của bạn được bảo mật 100%.'
+    }
+  ];
+
   private readonly dialog = inject(MatDialog);
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
+    this.endDate.setHours(23, 59, 59, 999);
+    // name: 1182818327
+    // sdt: 1361392576
+    // diachi: 775420545
+    this.reactiveForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{9,12}$/)]],
+      address: [''],
+    });
+  }
+
+  public sendInfo(): void {
+    const body = this.reactiveForm.getRawValue();
+    const payload = new URLSearchParams();
+    payload.set('entry.1182818327', body.name);
+    payload.set('entry.1361392576', body.phone);
+    payload.set('entry.775420545', body.address);
+
+    this.http.post(this.ggLink, payload.toString(), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded'
+      })
+    }).subscribe({
+      next: res => {
+        alert('Thông tin đã gửi thành công!');
+        this.reactiveForm.reset();
+      },
+      error: err => {
+        alert('Đã xảy ra lỗi gửi thông tin!');
+      }
+    });
+  }
 
   public openDialog(item: ListFollowPack, dialog: TemplateRef<unknown>): void {
     this.dialog.open(dialog, {

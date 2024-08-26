@@ -100,19 +100,17 @@ $n: 5;
             & button {
               &.custom-btn {
                 font-size: 0.6rem;
-
                 height: 2rem;
                 line-height: 0.6rem;
-
               }
             }
           }
         }
       }
 
-      & .news{
-        & .package-item{
-          & .package-box{
+      & .news {
+        & .package-item {
+          & .package-box {
             cursor: pointer;
           }
         }
@@ -128,7 +126,7 @@ $n: 5;
           display: flex;
           list-style: none;
           animation: scrolling 15s linear infinite;
-          gap:10px
+          gap: 10px
         }
 
         & .marquee-item {
@@ -138,7 +136,7 @@ $n: 5;
         }
 
         & .marquee-image {
-          max-width:150px;
+          max-width: 150px;
           white-space: nowrap;
         }
       }
@@ -147,6 +145,34 @@ $n: 5;
         padding: 0 12px;
       }
 
+      & .sale {
+        & .discount {
+          background-image: url(/assets/img/discount.jpg);
+
+          & .overlay {
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(255, 87, 87);
+            opacity: 0.5;
+          }
+
+          & .paragraph{
+            font-weight: 600;
+          }
+
+          & .voucher{
+            animation: scaleAnimation 3s infinite alternate;
+
+            font-size: 36px;
+            font-weight: 700;
+
+            letter-spacing: 2px;
+            line-height: 3rem;
+          }
+        }
+      }
     }
   }
 }
@@ -279,6 +305,15 @@ $n: 5;
         & .feedback {
           & .feedback-media {
             height: 100vh !important;
+          }
+        }
+        & .sale{
+          & .discount{
+            & .voucher{
+              font-size: 24px;
+
+              line-height: 2rem;
+            }
           }
         }
       }

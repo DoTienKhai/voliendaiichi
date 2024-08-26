@@ -242,7 +242,7 @@
           <div class="marquee">
             <div class="marquee-content">
               <ul class="d-flex list-unstyled gap-4">
-                @for (item of lsCustomer; track item.url){
+                @for (item of lsCustomer; track item.url) {
                   <li class="marquee-item"><img [src]="item.url" [alt]="item.url" class="marquee-image"></li>
                 }
               </ul>
@@ -253,13 +253,30 @@
     </article>
 
     <article>
-      <div class="sale row">
-        <div class="col-12">
-          <h2 class="text-center fw-bold text-dark text-uppercase mb-0">{{ sale }} </h2>
+      <div class="container-fluids">
+        <div class="sale row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+            <iframe class="w-100"
+                    src="https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/viewform?embedded=true"
+                    width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Đang tải…
+            </iframe>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6 mt-4 mt-lg-0">
+            <div class="content-wrap position-relative overflow-hidden p-4 discount ">
+              <div class="overlay position-absolute"></div>
+              <div class="row z-2 text-white position-relative">
+                @for (item of lsInfor; track item.paragraph) {
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-white fs-6 paragraph">
+                    <p>{{item.paragraph}}</p>
+                  </div>
+                }
+                <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </article>
-
   </main>
 </div>
 
