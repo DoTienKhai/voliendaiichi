@@ -92,6 +92,7 @@ $n: 5;
       & .package {
         & .package-item {
           min-height: 100%;
+
         }
 
         & .package-box {
@@ -109,11 +110,36 @@ $n: 5;
         }
       }
 
-      & .news {
+      & .news{
+        & .package-item{
+          & .package-box{
+            cursor: pointer;
+          }
+        }
+      }
+
+      & .customers {
         & .marquee {
-          display: inline-block;
+          width: 100%;
+          overflow: hidden;
+        }
+
+        & .marquee-content {
+          display: flex;
+          list-style: none;
+          animation: scrolling 15s linear infinite;
+          gap:10px
+        }
+
+        & .marquee-item {
+          height: 100px;
+          width: 150px;
+          flex-shrink: 0;
+        }
+
+        & .marquee-image {
+          max-width:150px;
           white-space: nowrap;
-          animation: marquee 10s linear infinite;
         }
       }
 
@@ -125,12 +151,16 @@ $n: 5;
   }
 }
 
-@keyframes marquee {
+@keyframes scrolling {
   0% {
-    transform: translateX(0); /* Bắt đầu ngoài màn hình bên phải */
+    transform: translateX(0);
   }
-  100% {
-    transform: translateX(-100%); /* Trở về vị trí ban đầu ngoài màn hình bên phải */
+  50% {
+    transform: translatex(-1000px);
+
+    100% {
+      transform: translatex(-2000px);
+    }
   }
 }
 
@@ -255,4 +285,3 @@ $n: 5;
     }
   }
 }
-

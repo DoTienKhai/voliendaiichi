@@ -76,6 +76,7 @@ export class HomeComponent {
   public chosseMe: string = 'những lý do chính bạn nên chọn';
   public news: string = 'tin tức & sự kiện';
   public customer: string = 'đối tác của chúng tôi';
+  public sale: string = 'đăng ký tư vấn';
   public lsChosseMe: { title: string }[] = [
     {title: 'Thủ tục bảo lãnh thuận tiện, thanh toán bồi thường nhanh gọn tại tất cả các bệnh viện từ tuyến huyến đến viện QT: Nhi Tw, Hồng Ngọc, Vinmec, Việt Pháp, 108...'},
     {title: 'Thanh toán Claim trong vòng 24h.'},
@@ -90,25 +91,25 @@ export class HomeComponent {
   public lsNews: ListFollowPack[] = [
     {
       id: 1,
-      url: './assets/img/img_27.jpg',
+      url: './assets/img/img_27.png',
       title: 'Sử dụng app ngay - nhận điểm thưởng',
       route: 'https://dai-ichi-life.com.vn/hoat-dong-kinh-doanh-15/daiichi-life-viet-nam-ra-mat-ung-dung-daiichi-connect-467'
     },
     {
       id: 2,
-      url: './assets/img/img_28.jpg',
+      url: './assets/img/img_28.png',
       title: 'Công cụ lập kế hoạch bảo hiểm',
       route: 'https://dai-ichi-life.com.vn/hoat-dong-kinh-doanh-15/dai-ichi-life-viet-nam-ra-mat-cong-cu-lap-ke-hoach-bao-hiem-2685'
     },
     {
       id: 3,
-      url: './assets/img/img_29.jpeg',
+      url: './assets/img/img_29.png',
       title: 'Hợp tác chiến lược với Garmin',
       route: 'https://suckhoedoisong.vn/dai-ichi-life-viet-nam-ky-hop-tac-chien-luoc-voi-garmin-169231130095954492.htm'
     },
     {
       id: 4,
-      url: './assets/img/img_30.jpg',
+      url: './assets/img/img_30.png',
       title: 'Đem ánh sáng cho người nghèo',
       route: 'https://dai-ichi-life.com.vn/hoat-dong-cong-dong-16/dai-ichi-life-viet-nam-tiep-tuc-trien-khai-chuong-trinh-phau-thuat-mat-dem-anh-sang-cho-nguoi-ngheo-2024-tai-tay-ninh-2732'
     },
@@ -158,6 +159,24 @@ export class HomeComponent {
     {url: './assets/img/img_21.png'},
     {url: './assets/img/img_22.png'},
     {url: './assets/img/img_23.png'},
+  ];
+
+  public lsCustomer: { url: string }[] = [
+    {url: './assets/img/phuongdong.png'},
+    {url: './assets/img/hongngoc.jpg'},
+    {url: './assets/img/hungviet.jpg'},
+    {url: './assets/img/medlatec.jpg'},
+    {url: './assets/img/vinmec.jpg'},
+    {url: './assets/img/tamanh.jpg'},
+    {url: './assets/img/phuongdong.png'},
+    {url: './assets/img/hongngoc.jpg'},
+    {url: './assets/img/hungviet.jpg'},
+    {url: './assets/img/medlatec.jpg'},
+    {url: './assets/img/vinmec.jpg'},
+    {url: './assets/img/tamanh.jpg'},
+    {url: './assets/img/hungviet.jpg'},
+    {url: './assets/img/medlatec.jpg'},
+    {url: './assets/img/phuongdong.png'},
   ];
 
   private readonly dialog = inject(MatDialog);
