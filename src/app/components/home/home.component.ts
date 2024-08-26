@@ -26,7 +26,8 @@ type ListFollowPack = {
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  private ggLink: string = 'https://script.google.com/macros/s/AKfycbwkyDigMoRwEQmW-10qDWj4-B2KkXexBg0AWingK68OItwWdRrQFTLCFyHnqHyYa9o6ow/exec';
+  @ViewChild('dialogTempDoclapchocon', {static: true}) dialogTempDoclapchocon!: TemplateRef<HTMLElement>;
+  private ggLink: string = 'https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/formResponse?submit=Submit?usp=pp_url';
   public reactiveForm: FormGroup;
   public endDate = new Date();
   public timeNow = new Date();
@@ -212,26 +213,16 @@ export class HomeComponent {
 
   public sendInfo(): void {
     const formData = this.reactiveForm.getRawValue();
-    this.http.post(this.ggLink, formData, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).subscribe({
-      next: res => {
-        alert('Thông tin đã gửi thành công!');
-        this.reactiveForm.reset();
-      },
-      error: err => {
-        alert('Đã xảy ra lỗi gửi thông tin!');
-        console.error(err);
-      }
-    });
+    const newUrl = `${this.ggLink}&entry.1182818327=${formData.name}&entry.1361392576=${formData.phone}&entry.775420545=${formData.address}`;
+    fetch(newUrl).then();
+    alert("Cảm ơn bạn đã để lại thông tin. Võ Liên sẽ liên hệ lại với mình sớm nhất nhé ^^");
+    this.reactiveForm.reset();
   }
 
-  public openDialog(item: ListFollowPack, dialog: TemplateRef<unknown>): void {
-    this.dialog.open(dialog, {
-      width: '500px',
-      data: item,
+  public openDialog(item: ListFollowPack): void {
+    this.dialog.open(this.dialogTempDoclapchocon, {
+      width: '650px',
+      height: '80%',
     });
   }
 

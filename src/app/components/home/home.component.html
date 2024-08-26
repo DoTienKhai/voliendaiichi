@@ -117,7 +117,7 @@
                 <p>{{ item.content }}</p>
                 <div class="d-flex align-items-center justify-content-center mt-auto">
                   <button class="btn btn-primary gradient-button text-uppercase custom-btn"
-                          (click)="openDialog(item, dialogTemp)">chi tiết gói
+                          (click)="openDialog(item)">chi tiết gói
                   </button>
                 </div>
               </div>
@@ -256,12 +256,12 @@
       <div class="container-fluids">
         <div class="sale row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-<!--            <form [formGroup]="reactiveForm">-->
-<!--              <input type="text" formControlName="name">-->
-<!--              <input type="text" formControlName="phone">-->
-<!--              <input type="text" formControlName="address">-->
-<!--              <button class="btn btn-primary" (click)="sendInfo()">Send</button>-->
-<!--            </form>-->
+            <!--            <form [formGroup]="reactiveForm">-->
+            <!--              <input type="text" formControlName="name">-->
+            <!--              <input type="text" formControlName="phone">-->
+            <!--              <input type="text" formControlName="address">-->
+            <!--              <button class="btn btn-primary" (click)="sendInfo()">Send</button>-->
+            <!--            </form>-->
             <iframe class="w-100"
                     src="https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/viewform?embedded=true"
                     width="640" height="830" frameborder="0" marginheight="0" marginwidth="0">Đang tải…
@@ -273,7 +273,7 @@
               <div class="row z-2 text-white position-relative">
                 @for (item of lsInfor; track item.paragraph) {
                   <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-white fs-6 paragraph position-relative">
-                    <p>{{item.paragraph}}</p>
+                    <p>{{ item.paragraph }}</p>
                   </div>
                 }
                 <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
@@ -287,6 +287,38 @@
   </main>
 </div>
 
-<ng-template #dialogTemp let-data>
-  Trang gián cức chó
+<ng-template #dialogTempDoclapchocon let-data>
+  <div class="content bg-custom ps-4 pe-2">
+    <h2 class="text-danger text-center text-uppercase">gói bảo hiểm độc lập cho con</h2>
+    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN TÂM SONG HÀNH.</h3>
+    <ul class="mb-0">
+      <li>Tham gia độc lập cho con.</li>
+      <li>Phí: 16 triệu/ năm.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Nhân thọ bảo vệ sinh mệnh cho con: STBH 1 Tỷ 2</h3>
+    <ul class="mb-0">
+      <li>Bảo vệ trong trường hợp tử vong, thương tật TBVV hoặc mất 2/6 bộ phận trên cơ thể.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Thẻ CSSK Nội trú cao cấp: </h3>
+    <ul class="mb-0">
+      <li>BẢO VỆ <span class="fw-bold">1tỷ/1 bệnh/1 thương tật.</span> </li>
+      <li>Giường và Ăn Uống: <span class="fw-bold">3tr/ngày ( dùng Phòng Vip nhé các Mẹ&Ba)</span> </li>
+      <li>Giường cho Cha Mẹ chăm sóc con: <span class="fw-bold">1tr/ngày.</span> </li>
+      <li>Chi phí thăm khám, thuốc men: <span class="fw-bold">60tr/1 năm/1 bệnh/1 thương tật.</span> </li>
+      <li>CP phẫu thuật <span class="fw-bold">75tr/1 ca.</span> </li>
+      <li>Điều trị UT ( hóa trị, xạ trị): <span class="fw-bold">100% chi phí thực tế.</span> </li>
+      <li>Biến chứng thai sản: <span class="fw-bold">35tr/1 biến chứng.</span> </li>
+      <li>Điều trị răng do tai nạn: <span class="fw-bold">7,5tr/1 năm.</span> </li>
+      <li class="fw-bold">Bảo vệ các bệnh xương khớp, thoái hóa.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Thẻ CSSK ngoại trú phổ thông: </h3>
+    <ul class="mb-0">
+      <li>Qũy khám: <span class="fw-bold">5tr/1 năm.</span> </li>
+      <li>Thanh toán tối thiểu 210k, tối đa <span class="fw-bold">1tr/1 lần khám.</span> </li>
+    </ul>
+    <h3 class="text-danger mb-0">    <h3 class="text-danger mb-0">✔ Thẻ CSSK ngoại trú phổ thông: </h3>
+    </h3>
+    <p>👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
+    <p>👉 Qũy học đường cho con sau <span class="fw-bold">15 năm: 300 triệu.</span></p>
+  </div>
 </ng-template>
