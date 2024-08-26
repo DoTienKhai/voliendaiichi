@@ -256,21 +256,28 @@
       <div class="container-fluids">
         <div class="sale row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+<!--            <form [formGroup]="reactiveForm">-->
+<!--              <input type="text" formControlName="name">-->
+<!--              <input type="text" formControlName="phone">-->
+<!--              <input type="text" formControlName="address">-->
+<!--              <button class="btn btn-primary" (click)="sendInfo()">Send</button>-->
+<!--            </form>-->
             <iframe class="w-100"
                     src="https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/viewform?embedded=true"
-                    width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Đang tải…
+                    width="640" height="830" frameborder="0" marginheight="0" marginwidth="0">Đang tải…
             </iframe>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-6 mt-4 mt-lg-0">
-            <div class="content-wrap position-relative overflow-hidden p-4 discount ">
+            <div class="content-wrap position-relative overflow-hidden p-4 h-100 discount d-flex">
               <div class="overlay position-absolute"></div>
               <div class="row z-2 text-white position-relative">
                 @for (item of lsInfor; track item.paragraph) {
-                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-white fs-6 paragraph">
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-6 text-white fs-6 paragraph position-relative">
                     <p>{{item.paragraph}}</p>
                   </div>
                 }
                 <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
+                <p id="demo"></p>
               </div>
             </div>
           </div>

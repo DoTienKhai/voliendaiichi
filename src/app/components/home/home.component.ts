@@ -1,8 +1,8 @@
-import {Component, inject, TemplateRef} from '@angular/core';
+import {Component, ElementRef, inject, TemplateRef, ViewChild} from '@angular/core';
 import {DatePipe, NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 type ListFollowPack = {
   id?: number,
@@ -26,7 +26,7 @@ type ListFollowPack = {
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  private ggLink: string = 'https://docs.google.com/forms/u/0/d/16ydbCsZZsjrWYoxRzFokT42HsuqEAL7QRBRi_Po1s3k/prefill';
+  private ggLink: string = 'https://script.google.com/macros/s/AKfycbwkyDigMoRwEQmW-10qDWj4-B2KkXexBg0AWingK68OItwWdRrQFTLCFyHnqHyYa9o6ow/exec';
   public reactiveForm: FormGroup;
   public endDate = new Date();
   public timeNow = new Date();
@@ -196,7 +196,7 @@ export class HomeComponent {
 
   private readonly dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private el: ElementRef) {
     this.endDate.setHours(23, 59, 59, 999);
     // name: 1182818327
     // sdt: 1361392576
@@ -206,19 +206,16 @@ export class HomeComponent {
       phone: ['', [Validators.required, Validators.pattern(/^[0-9]{9,12}$/)]],
       address: [''],
     });
+
   }
 
-  public sendInfo(): void {
-    const body = this.reactiveForm.getRawValue();
-    const payload = new URLSearchParams();
-    payload.set('entry.1182818327', body.name);
-    payload.set('entry.1361392576', body.phone);
-    payload.set('entry.775420545', body.address);
 
-    this.http.post(this.ggLink, payload.toString(), {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
+  public sendInfo(): void {
+    const formData = this.reactiveForm.getRawValue();
+    this.http.post(this.ggLink, formData, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }).subscribe({
       next: res => {
         alert('Thông tin đã gửi thành công!');
@@ -226,6 +223,7 @@ export class HomeComponent {
       },
       error: err => {
         alert('Đã xảy ra lỗi gửi thông tin!');
+        console.error(err);
       }
     });
   }

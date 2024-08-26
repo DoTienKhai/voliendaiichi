@@ -155,11 +155,13 @@ $n: 5;
             height: 100%;
             width: 100%;
             background-color: rgb(255, 87, 87);
-            opacity: 0.5;
+            opacity: 0.85;
           }
 
           & .paragraph{
             font-weight: 600;
+
+            top: 20%;
           }
 
           & .voucher{
@@ -277,6 +279,34 @@ $n: 5;
         & .feedback {
           & .feedback-media {
             height: 160vh !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 448px) and (max-width: 755px) {
+  .home {
+    & main {
+      & article {
+        & .sale{
+          & iframe {
+            height: 940px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 448px) {
+  .home {
+    & main {
+      & article {
+        & .sale{
+          & iframe {
+            height: 960px;
           }
         }
       }
