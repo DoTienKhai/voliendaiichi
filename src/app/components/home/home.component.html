@@ -1,29 +1,31 @@
-<div class="container-fluid home p-1 p-sm-4 p-md-4 p-lg-4 pt-2">
-  <header class="row d-flex align-items-center">
-    <label for="" class="col-2 d-sm-block d-md-none d-lg-none pt-2">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-           class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
-      </svg>
-    </label>
-    <div class="col-sm-10 col-10 col-md-4 col-lg-6 custom-img">
-      <div class="img-header"></div>
-    </div>
-    <div class="col-md-7 col-8 col-lg-5 d-none d-md-block d-lg-block">
-      <div class="category">
-        <ul class="d-flex list-unstyled justify-content-between align-items-center mb-0 h-100">
-          @for (item of lsCategories; track item.href) {
-            <li class="fw-bold" (click)="scrollTo(item.href)">
-              {{ item.name }}
-            </li>
-          }
-        </ul>
+<div class="home">
+  <div class="container-fluid">
+    <header class="row d-flex align-items-center p-md-4 p-lg-4">
+      <label for="" class="col-2 d-sm-block d-md-none d-lg-none pt-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+        </svg>
+      </label>
+      <div class="col-sm-10 col-10 col-md-4 col-lg-6 custom-img">
+        <div class="img-header"></div>
       </div>
-    </div>
-  </header>
+      <div class="col-md-7 col-8 col-lg-5 d-none d-md-block d-lg-block">
+        <div class="category">
+          <ul class="d-flex list-unstyled justify-content-between align-items-center mb-0 h-100">
+            @for (item of lsCategories; track item.href) {
+              <li class="fw-bold" (click)="scrollTo(item.href)">
+                {{ item.name }}
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </header>
+  </div>
   <main>
-    <article>
+    <article class="container-fluid">
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -56,7 +58,7 @@
         </button>
       </div>
     </article>
-    <article>
+    <article class="container-fluid">
       <div class="bg-info text-center p-4">
         <h2 class="text-uppercase text-danger fw-bold">giới thiệu bản thân võ liên dai-ichi</h2>
         <hr class="text-danger fw-bold">
@@ -64,7 +66,8 @@
           @for (item of lsExperience; track item.name) {
             <div class="col-12 col-sm-4 col-md-4 col-lg-4">
               <h2 class="text-center fw-bold text-danger text-uppercase">{{ item.name }}</h2>
-              <p class="text-center fw-bold fs-4" [ngClass]="{'mb-0': item.value2}">{{ item.value }}</p>
+              <p class="text-center fw-bold fs-4" [ngClass]="{'mb-0': item.value2}"
+                 style="line-height: 2rem">{{ item.value }}</p>
               @if (item.value2) {
                 <p class="text-center fw-bold fs-4">{{ item.value2 }}</p>
               }
@@ -72,8 +75,9 @@
           }
         </div>
       </div>
+
     </article>
-    <article>
+    <article class="container-fluid">
       <div class="reason row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 left">
           <div class="line"></div>
@@ -101,7 +105,7 @@
       </div>
     </article>
 
-    <article id="product">
+    <article class="container-fluid" id="product">
       <div class="package row row-gap-2">
         <div class="col-12 left">
           <div class="line d-block d-sm-none d-md-none d-lg-none"></div>
@@ -128,7 +132,7 @@
     </article>
 
     <article>
-      <div class="feedback">
+      <div class="feedback container-fluid">
         <div class="row">
           <div class="col-12">
             <h2 class="text-center fw-bold text-danger text-uppercase mt-2 mb-0">{{ feedback }}</h2>
@@ -156,7 +160,7 @@
         </div>
       </div>
     </article>
-    <article>
+    <article class="container-fluid">
       <div class="signature row">
         <div class="col-12 left">
           <h2 class="text-center fw-bold text-danger text-uppercase mt-2">{{ signature }}</h2>
@@ -176,19 +180,21 @@
         </div>
       </div>
     </article>
-    <article>
+    <article class="container-fluid">
       <div class="player row">
         <div class="col-12 mb-2">
           <h2 class="text-center fw-bold text-danger text-uppercase mb-0">{{ player }}</h2>
           <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
         </div>
-        <div class="col-12">
-          <img src="./assets/img/img_25.png" [alt]="'volien-daiichi'" class="mw-100 h-auto">
+        <div class="col-12 d-flex justify-content-center bg-player">
+          <div class="w-75">
+            <img src="./assets/img/img_25.png" [alt]="'volien-daiichi'" class="mw-100 h-auto">
+          </div>
         </div>
       </div>
     </article>
 
-    <article>
+    <article class="container-fluid">
       <div class="choose-me row">
         <div class="col-12">
           <h2 class="text-center fw-bold text-dark text-uppercase">{{ chosseMe }} <span class="text-danger">Võ Liên Dai-ichi</span>
@@ -205,7 +211,7 @@
       </div>
     </article>
 
-    <article>
+    <article class="container-fluid">
       <div class="news row">
         <div class="col-12">
           <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
@@ -231,7 +237,7 @@
       </div>
     </article>
 
-    <article>
+    <article class="container-fluid">
       <div class="customers row">
         <div class="col-12">
           <div class="line d-block d-sm-none d-md-none d-lg-none bg-danger"></div>
@@ -253,19 +259,49 @@
     </article>
 
     <article>
-      <div class="container-fluids">
+      <div class="container-fluid">
         <div class="sale row">
           <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-            <!--            <form [formGroup]="reactiveForm">-->
-            <!--              <input type="text" formControlName="name">-->
-            <!--              <input type="text" formControlName="phone">-->
-            <!--              <input type="text" formControlName="address">-->
-            <!--              <button class="btn btn-primary" (click)="sendInfo()">Send</button>-->
-            <!--            </form>-->
-            <iframe class="w-100"
-                    src="https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/viewform?embedded=true"
-                    width="640" height="830" frameborder="0" marginheight="0" marginwidth="0">Đang tải…
-            </iframe>
+            <div class="form-container w-100" id="register-form">
+              <h3 class="form-title">Đăng Ký Tư Vấn Miễn Phí</h3>
+              <form [formGroup]="reactiveForm" novalidate>
+                <div class="form-group">
+                  <label for="fullName">Họ và tên (<span class="text-danger">*</span>)</label>
+                  <input type="text" id="fullName" name="fullName" placeholder="Nhập họ và tên" required
+                         formControlName="name">
+                  @if (name.invalid && (name.dirty || name.touched)) {
+                    @if (name.errors?.['required']) {
+                      <span class="text-danger text-center fw-bold">Nhập họ và tên</span>
+                    }
+                  }
+                </div>
+                <div class="form-group">
+                  <label for="phone">Số điện thoại (<span class="text-danger">*</span>)</label>
+                  <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required
+                         formControlName="phone">
+                  @if (phone.invalid && (phone.dirty || phone.touched)) {
+                    @if (phone.errors?.['required']) {
+                      <span class="text-danger text-center fw-bold">Nhập số điện thoại</span>
+                    }
+                  }
+                  @if (phone.errors?.['pattern']) {
+                    <span class="text-danger text-center fw-bold">Số điện thoại không đúng định dạng</span>
+                  }
+                </div>
+                <div class="form-group">
+                  <label for="address">Địa chỉ</label>
+                  <input type="text" id="address" name="address" placeholder="Nhập địa chỉ" formControlName="address">
+                </div>
+                <div class="form-buttons">
+                  <button type="submit" class="submit" (click)="sendInfo()">Gửi</button>
+                  <button type="reset" class="reset" (click)="reactiveForm.reset()">Nhập lại</button>
+                </div>
+              </form>
+            </div>
+            <!--            <iframe class="w-100"-->
+            <!--                    src="https://docs.google.com/forms/d/e/1FAIpQLScWmnZ0txvbRG-H0opxJgTBfcVk1a8-85qMyXR5gS-QNMJpqw/viewform?embedded=true"-->
+            <!--                    width="640" height="830" frameborder="0" marginheight="0" marginwidth="0">Đang tải…-->
+            <!--            </iframe>-->
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-6 mt-4 mt-lg-0">
             <div class="content-wrap position-relative overflow-hidden p-4 h-100 discount d-flex">
@@ -277,7 +313,6 @@
                   </div>
                 }
                 <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
-                <p id="demo"></p>
               </div>
             </div>
           </div>
@@ -285,6 +320,25 @@
       </div>
     </article>
   </main>
+  <footer class="footer position-relative">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          @for (item of lsAddress; track item.icon) {
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <div class="custom-svg">
+                <span [innerHTML]="item.icon"></span>
+              </div>
+              <p class="mb-0 ms-2 fs-6" [innerHTML]="item.title"></p>
+            </div>
+          }
+        </div>
+        <div class="col-12 col-lg-6 fs-6">
+          fkldjflkjdklf
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <ng-template #dialogTempDoclapchocon let-data>
@@ -301,24 +355,103 @@
     </ul>
     <h3 class="text-danger mb-0">✔ Thẻ CSSK Nội trú cao cấp: </h3>
     <ul class="mb-0">
-      <li>BẢO VỆ <span class="fw-bold">1tỷ/1 bệnh/1 thương tật.</span> </li>
-      <li>Giường và Ăn Uống: <span class="fw-bold">3tr/ngày ( dùng Phòng Vip nhé các Mẹ&Ba)</span> </li>
-      <li>Giường cho Cha Mẹ chăm sóc con: <span class="fw-bold">1tr/ngày.</span> </li>
-      <li>Chi phí thăm khám, thuốc men: <span class="fw-bold">60tr/1 năm/1 bệnh/1 thương tật.</span> </li>
-      <li>CP phẫu thuật <span class="fw-bold">75tr/1 ca.</span> </li>
-      <li>Điều trị UT ( hóa trị, xạ trị): <span class="fw-bold">100% chi phí thực tế.</span> </li>
-      <li>Biến chứng thai sản: <span class="fw-bold">35tr/1 biến chứng.</span> </li>
-      <li>Điều trị răng do tai nạn: <span class="fw-bold">7,5tr/1 năm.</span> </li>
+      <li>BẢO VỆ <span class="fw-bold">1tỷ/1 bệnh/1 thương tật.</span></li>
+      <li>Giường và Ăn Uống: <span class="fw-bold">3tr/ngày ( dùng Phòng Vip nhé các Mẹ&Ba)</span></li>
+      <li>Giường cho Cha Mẹ chăm sóc con: <span class="fw-bold">1tr/ngày.</span></li>
+      <li>Chi phí thăm khám, thuốc men: <span class="fw-bold">60tr/1 năm/1 bệnh/1 thương tật.</span></li>
+      <li>CP phẫu thuật <span class="fw-bold">75tr/1 ca.</span></li>
+      <li>Điều trị UT ( hóa trị, xạ trị): <span class="fw-bold">100% chi phí thực tế.</span></li>
+      <li>Biến chứng thai sản: <span class="fw-bold">35tr/1 biến chứng.</span></li>
+      <li>Điều trị răng do tai nạn: <span class="fw-bold">7,5tr/1 năm.</span></li>
       <li class="fw-bold">Bảo vệ các bệnh xương khớp, thoái hóa.</li>
     </ul>
     <h3 class="text-danger mb-0">✔ Thẻ CSSK ngoại trú phổ thông: </h3>
     <ul class="mb-0">
-      <li>Qũy khám: <span class="fw-bold">5tr/1 năm.</span> </li>
-      <li>Thanh toán tối thiểu 210k, tối đa <span class="fw-bold">1tr/1 lần khám.</span> </li>
+      <li>Qũy khám: <span class="fw-bold">5tr/1 năm.</span></li>
+      <li>Thanh toán tối thiểu 210k, tối đa <span class="fw-bold">1tr/1 lần khám.</span></li>
     </ul>
-    <h3 class="text-danger mb-0">    <h3 class="text-danger mb-0">✔ Thẻ CSSK ngoại trú phổ thông: </h3>
-    </h3>
-    <p>👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
+    <h3 class="text-danger mb-0">✔ Bảo vệ bệnh hiểm nghèo: 100tr ( Nhận tiền mặt mang về) </h3>
+    <p class="mb-0">👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
+    <p>👉 Qũy học đường cho con sau <span class="fw-bold">15 năm: 300 triệu.</span></p>
+  </div>
+</ng-template>
+
+<ng-template #dialogTempChomevacon let-data>
+  <div class="content bg-custom ps-4 pe-2">
+    <h2 class="text-danger text-center text-uppercase">gói bh cho 2 mẹ con (2 bố con)</h2>
+    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN TÂM SONG HÀNH.</h3>
+    <ul class="mb-0">
+      <li>Tham gia cho 2 mẹ con, hoặc 2 bố con.</li>
+      <li>Phí: <span class="fw-bold">22 triệu/ năm.</span></li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Nhân thọ bảo vệ sinh mệnh cho bố/mẹ người trụ cột trong gia đình: từ 800tr – 1tỷ</h3>
+    <ul class="mb-0">
+      <li>Bảo vệ trong trường hợp tử vong, thương tật TBVV hoặc mất 2/6 bộ phận trên cơ thể.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Bảo hiểm bệnh hiểm nghèo cho bố hoặc mẹ, người trụ cột gia đình: 300tr</h3>
+    <ul class="mb-0">
+      <li>Bảo vệ 88 bệnh hiểm nghèo</li>
+      <li>Tổng quyền lợi tối đa lên đến <span class="fw-bold">200% STBH</span></li>
+      <li><span class="fw-bold">Bảo vệ nhiều lần </span>cho nhiều bệnh hiểm nghèo khác nhau</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Bảo hiểm tai nạn cho bố hoặc mẹ, người trụ cột gia đình: 200tr</h3>
+    <ul class="mb-0">
+      <li>Thanh toán theo tỉ lệ % thương tật. Ví dụ: tỉ lệ thương tật do tai nạn 10%, <span class="fw-bold">nhận tiền mặt 20tr.</span>
+      </li>
+      <li>Hỗ trợ nằm viện do tai nạn: <span class="fw-bold">200k/1 ngày.</span></li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Thẻ CSSK Nội trú cao cấp dành cho 2 người bố kèm con hoặc mẹ kèm con. </h3>
+    <li>BẢO VỆ <span class="fw-bold">1tỷ/1 bệnh/1 thương tật.</span></li>
+    <li>Giường và Ăn Uống: <span class="fw-bold">3tr/ngày ( dùng Phòng Vip nhé các Mẹ&Ba)</span></li>
+    <li>Giường cho Cha Mẹ chăm sóc con: <span class="fw-bold">1tr/ngày.</span></li>
+    <li>Chi phí thăm khám, thuốc men: <span class="fw-bold">60tr/1 năm/1 bệnh/1 thương tật.</span></li>
+    <li>CP phẫu thuật <span class="fw-bold">75tr/1 ca.</span></li>
+    <li>Điều trị UT ( hóa trị, xạ trị): <span class="fw-bold">100% chi phí thực tế.</span></li>
+    <li>Bệnh bẩm sinh: <span class="fw-bold">35tr.</span></li>
+    <li>Biến chứng thai sản: <span class="fw-bold">35tr/1 biến chứng.</span></li>
+    <li>Điều trị răng do tai nạn: <span class="fw-bold">7,5tr/1 năm.</span></li>
+    <li>Bảo vệ các bệnh xương khớp, thoái hóa.</li>
+    <p class="mb-0">👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
+    <p>👉 Qũy học đường cho con sau <span class="fw-bold">15 năm: 300 triệu.</span></p>
+  </div>
+</ng-template>
+
+<ng-template #dialogTempCagiadinh let-data>
+  <div class="content bg-custom ps-4 pe-2">
+    <h2 class="text-danger text-center text-uppercase">gói bh cho cả gia đình</h2>
+    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN TÂM SONG HÀNH.</h3>
+    <ul class="mb-0">
+      <li>Tham gia cho <span class="fw-bold">cả gia đình ( 3-4 thành viên).</span></li>
+      <li>Phí: <span class="fw-bold">22 triệu/ năm.</span></li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Nhân thọ bảo vệ sinh mệnh cho bố/mẹ người trụ cột trong gia đình: từ 800tr – 1tỷ</h3>
+    <ul class="mb-0">
+      <li>Bảo vệ trong trường hợp tử vong, thương tật TBVV hoặc mất 2/6 bộ phận trên cơ thể.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Bảo hiểm bệnh hiểm nghèo cho bố hoặc mẹ, người trụ cột gia đình: 300tr</h3>
+    <ul class="mb-0">
+      <li>Bảo vệ 88 bệnh hiểm nghèo</li>
+      <li>Tổng quyền lợi tối đa lên đến <span class="fw-bold">200% STBH</span></li>
+      <li><span class="fw-bold">Bảo vệ nhiều lần </span>cho nhiều bệnh hiểm nghèo khác nhau</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Bảo hiểm tai nạn cho bố hoặc mẹ, người trụ cột gia đình: 200tr</h3>
+    <ul class="mb-0">
+      <li>Thanh toán theo tỉ lệ % thương tật. Ví dụ: tỉ lệ thương tật do tai nạn 10%, <span class="fw-bold">nhận tiền mặt 20tr.</span>
+      </li>
+      <li>Hỗ trợ nằm viện do tai nạn: <span class="fw-bold">200k/1 ngày.</span></li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Thẻ CSSK Nội trú cao cấp dành cho CẢ GIA ĐÌNH.</h3>
+    <li>BẢO VỆ <span class="fw-bold">1tỷ/1 bệnh/1 thương tật.</span></li>
+    <li>Giường và Ăn Uống: <span class="fw-bold">3tr/ngày ( dùng Phòng Vip nhé các Mẹ&Ba)</span></li>
+    <li>Giường cho Cha Mẹ chăm sóc con: <span class="fw-bold">1tr/ngày.</span></li>
+    <li>Chi phí thăm khám, thuốc men: <span class="fw-bold">60tr/1 năm/1 bệnh/1 thương tật.</span></li>
+    <li>CP phẫu thuật <span class="fw-bold">75tr/1 ca.</span></li>
+    <li>Điều trị UT ( hóa trị, xạ trị): <span class="fw-bold">100% chi phí thực tế.</span></li>
+    <li>Bệnh bẩm sinh: <span class="fw-bold">35tr.</span></li>
+    <li>Biến chứng thai sản: <span class="fw-bold">35tr/1 biến chứng.</span></li>
+    <li>Điều trị răng do tai nạn: <span class="fw-bold">7,5tr/1 năm.</span></li>
+    <li class="fw-bold">Bảo vệ các bệnh xương khớp, thoái hóa.</li>
+    <p class="mb-0">👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
     <p>👉 Qũy học đường cho con sau <span class="fw-bold">15 năm: 300 triệu.</span></p>
   </div>
 </ng-template>
