@@ -140,7 +140,8 @@
 
       & .player {
         padding: 0 12px;
-        & .bg-player{
+
+        & .bg-player {
           background-image: url(/assets/img/bg-player.png);
           background-size: cover;
         }
@@ -284,14 +285,15 @@
 
       color: #222;
 
-      & svg{
+      & svg {
         position: absolute;
         bottom: 0;
         left: 0;
         right: 0;
         z-index: -1;
       }
-      & .custom-svg{
+
+      & .custom-svg {
         min-width: 24px;
         min-height: 24px;
 
@@ -312,10 +314,9 @@
   }
   50% {
     transform: translatex(-1000px);
-
-    100% {
-      transform: translatex(-2000px);
-    }
+  }
+  100% {
+    transform: translatex(-2000px);
   }
 }
 
@@ -369,7 +370,7 @@
       & article {
         & .sale {
           & .discount {
-            & .paragraph{
+            & .paragraph {
               top: 0;
             }
           }
@@ -434,6 +435,7 @@
     }
   }
 }
+
 @media (min-width: 530px) and (max-width: 689px) {
   .home {
     & main {
