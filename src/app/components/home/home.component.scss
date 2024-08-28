@@ -1,5 +1,81 @@
 //scss
 .home {
+  & .icon-group {
+    position: fixed;
+    top: 74%;
+    left: 4%;
+    z-index: 10;
+
+    animation: moveLeftRight 2s infinite cubic-bezier(0.9, 2.45, 0.27, 1.55);
+
+    & .icon-custom {
+      width: 62px;
+      height: 62px;
+
+      margin-bottom: 10px;
+    }
+  }
+
+  & .menu-mobile {
+    background: rgb(239 177 177);
+    position: fixed;
+    top: 0;
+    /* left: 0; */
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 15px 20px;
+    left: -100%;
+    transition: all .3s ease;
+
+    &.show {
+      left: 0;
+    }
+
+    & .custom-close {
+      & label {
+        width: 44px;
+        height: 44px;
+
+        & svg {
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+
+    & .menu {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      background-color: #333;
+      width: 100%;
+      text-align: center;
+    }
+
+    & .menu li {
+      border-bottom: 1px solid #444;
+      padding: 15px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: #575757;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+
   & header {
     margin-bottom: 20px;
 
@@ -178,6 +254,13 @@
 
             letter-spacing: 2px;
             line-height: 3rem;
+
+            background: linear-gradient(90deg, #ffffff, #ffeb3b, #00ffcc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
           }
         }
 
@@ -301,7 +384,13 @@
         width: 24px;
         height: 24px;
       }
+
+      & .custom-img-fb{
+        width: 135px;
+        height: 138px;
+      }
     }
+
   }
 }
 
@@ -362,6 +451,18 @@
   }
   50% {
     transform: scale(1);
+  }
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

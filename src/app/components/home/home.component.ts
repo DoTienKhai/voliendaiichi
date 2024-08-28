@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, Renderer2, TemplateRef, ViewChild} from '@angular/core';
 import {DatePipe, NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -26,11 +26,14 @@ type ListFollowPack = {
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild('dialogTempDoclapchocon', {static: true}) dialogTempDoclapchocon!: TemplateRef<HTMLElement>;
   @ViewChild('dialogTempChomevacon', {static: true}) dialogTempChomevacon!: TemplateRef<HTMLElement>;
+  @ViewChild('dialogTempAnphuchungthinh', {static: true}) dialogTempAnphuchungthinh!: TemplateRef<HTMLElement>;
   @ViewChild('dialogTempCagiadinh', {static: true}) dialogTempCagiadinh!: TemplateRef<HTMLElement>;
   private ggLink: string = 'https://docs.google.com/forms/d/e/1FAIpQLSelkFzaEdmt789nIg65ptYiqBJAebf3IyVETeG9WqCqTNrfXA/formResponse?submit=Submit?usp=pp_url';
+  private countdownElement!: HTMLElement;
+  private intervalId!: number;
   public reactiveForm: FormGroup;
   public endDate = new Date();
   public timeNow = new Date();
@@ -134,13 +137,13 @@ export class HomeComponent {
     {
       id: 2,
       url: './assets/img/img_7.png',
-      title: 'gói bh cho mẹ và con',
+      title: 'gói bh cho mẹ/ba và con',
       content: 'Một gia đình hạnh phúc khởi nguồn từ sự yêu thương và sức khỏe dồi dào của các thành viên trong gia đình. Song thật khó thảnh thơi về chi phí y tế khi bệnh tật thường đến không báo trước.'
     },
     {
       id: 3,
       url: './assets/img/img_8.png',
-      title: 'gói bh cho ba và con',
+      title: 'gói bh an phúc hưng thịnh toàn diện',
       content: 'Ngoài các quyền lợi về bảo hiểm còn là sản phẩm bảo hiểm liên kết đầu tư, giúp bảo vệ tài chính vững chắc cho hiện tại và mang đến cơ hội tích lũy đầu tư, gia tăng tài sản hiệu quả cho tương lai.'
     },
     {
@@ -214,11 +217,17 @@ export class HomeComponent {
     {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 24 24" fill="#051F4D"> <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path> </svg>',
       title: `<a href="https://voliendaiichi.vercel.app/volien-daiichi">https://voliendaiichi.vercel.app/volien-daiichi</a>`
+    },
+    {
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 18 18">\n' +
+        '  <path d="M8.7495,1.50375C4.965,1.6275,1.7805,4.68825,1.51875,8.466C1.2765,12.49275,4.0815,16.374,8.0565,17.44125v-5.595h-2.079 c-0.58875,0-1.0515-0.47025-1.0515-1.0515v0c0-0.58875,0.47025-1.0515,1.0515-1.0515h1.29075v-1.3995 c0-2.31675,1.12875-3.3335,3.054-3.3335c0.28575,0,0.5295,0.006,0.73675,0.01575c0.50925,0.02475,0.903,0.44875,0.903,0.9585 v0c0,0.53025-0.42975,0.96-0.96,0.96h-0.3535c-0.81775,0-1.10325,0.77525-1.10325,1.64875v1.14975h1.496 c0.47275,0,0.8345,0.4215,0.7625,0.88875l-0.0865,0.561c-0.0585,0.376-0.3815,0.654-0.7625,0.654h-1.4095v5.79775 C14.725,15.927,18,12.7965,18,9C18,4.7745,13.00575,1.3665,8.7495,1.50375z"></path>\n' +
+        '</svg>\n',
+      title: `<a href="https://www.facebook.com/profile.php?id=100009359682242">Fb: Võ Liên Dai-ichi  (Siêu thị Bảo Hiểm)</a>`
     }
   ];
   private readonly dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private el: ElementRef,private sanitizer: DomSanitizer) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private el: ElementRef,private sanitizer: DomSanitizer, private render: Renderer2) {
     this.endDate.setHours(23, 59, 59, 999);
     // name: 1182818327
     // sdt: 1361392576
@@ -234,7 +243,8 @@ export class HomeComponent {
         icon: this.sanitizer.bypassSecurityTrustHtml(d.icon as string),
         title: d.title,
       })
-    })
+    });
+    this.countdownElement = this.el.nativeElement.querySelector(".demo-time");
   }
 
   get name(): FormControl {
@@ -243,6 +253,43 @@ export class HomeComponent {
 
   get phone(): FormControl {
     return this.reactiveForm.get('phone') as FormControl;
+  }
+
+  ngOnInit() {
+    // setInterval(() => this.timeNow = new Date(), 1000);
+  }
+
+  private startCountdown(date: string): void{
+    const endTime = new Date(date).getTime();
+    const second = 1000
+    const minute = second * 60
+    const hour = minute * 60
+    const day = hour * 24;
+
+    // this.updateCountdown(endTime, day, hour, minute, second);
+    this.intervalId = setInterval(() => this.updateCountdown(endTime, day, hour, minute, second), 1000) as unknown as number;
+  }
+
+  public updateCountdown(endTime: number, day: number, hour: number, minute: number, second: number): void{
+    const now = new Date().getTime();
+    const timeLeft = endTime - now;
+
+    if (timeLeft <= 0) {
+      if(this.countdownElement){
+        this.render.setProperty(this.countdownElement, 'textContent', 'Time left');
+      }
+      clearInterval(this.intervalId);
+      return;
+    }
+
+    const days = Math.floor(timeLeft / (day));
+    const hours = Math.floor((timeLeft % (day)) / (hour));
+    const minutes = Math.floor((timeLeft % (hour)) / (minute));
+    const seconds = Math.floor((timeLeft % (minute)) / second);
+    const countdownElement = `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    if(this.countdownElement){
+      this.render.setProperty(this.countdownElement, 'textContent', countdownElement);
+    }
   }
 
 
@@ -265,10 +312,15 @@ export class HomeComponent {
         });
         return;
       case 2 :
-      case 3:
         this.dialog.open(this.dialogTempChomevacon, {
           width: '650px',
           height: '520px',
+        });
+        return;
+      case 3:
+        this.dialog.open(this.dialogTempAnphuchungthinh, {
+          width: '650px',
+          height: 'auto',
         });
         return;
       case 4:
@@ -288,11 +340,23 @@ export class HomeComponent {
       block: "start",
       inline: "nearest"
     });
+
+    this.removeClass();
   }
 
   public navigateBy(link: string | undefined): void {
     if (link) {
       window.open(link);
     }
+  }
+
+  public addClass(): void{
+    const menuMobile = this.el.nativeElement.querySelector(".menu-mobile");
+    this.render.addClass(menuMobile, 'show');
+  }
+
+  public removeClass(): void {
+    const menuMobile = this.el.nativeElement.querySelector(".menu-mobile");
+    this.render.removeClass(menuMobile, 'show');
   }
 }

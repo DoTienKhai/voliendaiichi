@@ -1,9 +1,38 @@
-<div class="home">
+<div class="home" id="home">
+  <div class="icon-group">
+    <div class="icon-custom">
+      <a href="tel:0973903463">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none"
+             viewBox="0 0 32 32"
+             class="" fill="#000">
+          <image href="https://w.ladicdn.com/ladiui/icons/social/phone-call.svg" height="32" width="32"></image>
+        </svg>
+      </a>
+    </div>
+    <div class="icon-custom">
+      <a href="https://zalo.me/0973903463">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none"
+             viewBox="0 0 32 32"
+             class="" fill="#000">
+          <image href="https://w.ladicdn.com/ladiui/icons/social/zalo.svg" height="32" width="32"></image>
+        </svg>
+      </a>
+    </div>
+    <div class="icon-custom">
+      <a href="https://www.facebook.com/messages/e2ee/t/25298701013054083">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none"
+             viewBox="0 0 32 32"
+             class="" fill="#000">
+          <image href="https://w.ladicdn.com/ladiui/icons/social/messenger.svg" height="32" width="32"></image>
+        </svg>
+      </a>
+    </div>
+  </div>
   <div class="container-fluid">
     <header class="row d-flex align-items-center p-md-4 p-lg-4">
-      <label for="" class="col-2 d-sm-block d-md-none d-lg-none pt-2">
+      <label for="" class="col-2 d-sm-block d-md-none d-lg-none pt-2 open-menu-mobile">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="size-6">
+             class="size-6" (click)="addClass()">
           <path stroke-linecap="round" stroke-linejoin="round"
                 d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0ZM3.75 12h.007v.008H3.75V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm-.375 5.25h.007v.008H3.75v-.008Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
         </svg>
@@ -23,6 +52,28 @@
         </div>
       </div>
     </header>
+    <div class="menu-mobile">
+      <div class="d-flex align-items-center justify-content-end custom-close w-100">
+        <label for="">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" (click)="removeClass()">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22ZM8.96965 8.96967C9.26254 8.67678 9.73742 8.67678 10.0303 8.96967L12 10.9394L13.9696 8.96969C14.2625 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0303L13.0606 12L15.0303 13.9697C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73744 15.3232 9.26256 15.3232 8.96967 15.0303C8.67678 14.7374 8.67678 14.2626 8.96967 13.9697L10.9393 12L8.96965 10.0303C8.67676 9.73744 8.67676 9.26256 8.96965 8.96967Z"
+                    fill="#fff"></path>
+            </g>
+          </svg>
+        </label>
+      </div>
+      <ul class="menu">
+        @for (item of lsCategories; track item.href) {
+          <li (click)="scrollTo(item.href)">
+            {{ item.name }}
+          </li>
+        }
+      </ul>
+    </div>
   </div>
   <main>
     <article class="container-fluid">
@@ -132,7 +183,7 @@
     </article>
 
     <article>
-      <div class="feedback container-fluid">
+      <div class="feedback container-fluid" id="feedback">
         <div class="row">
           <div class="col-12">
             <h2 class="text-center fw-bold text-danger text-uppercase mt-2 mb-0">{{ feedback }}</h2>
@@ -313,6 +364,7 @@
                   </div>
                 }
                 <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
+                <!--                <p class="text-white text-center text-uppercase fs-5 demo-time">{{timeNow}}</p>-->
               </div>
             </div>
           </div>
@@ -320,7 +372,7 @@
       </div>
     </article>
   </main>
-  <footer class="footer position-relative">
+  <footer class="footer position-relative" id="contact">
     <div class="container">
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -333,11 +385,14 @@
             </div>
           }
         </div>
-        <div class="col-12 col-lg-6 fs-6">
-          fkldjflkjdklf
+        <div class="col-12 col-lg-6">
+          <div class="custom-img-fb m-auto">
+            <img src="./assets/img/dilien.jpg" class="w-100 h-auto" alt="">
+          </div>
         </div>
       </div>
     </div>
+    <div class="w-100 text-center text-dark mt-4">©2024 Allrights reserved Volien daiichi</div>
   </footer>
 </div>
 
@@ -413,6 +468,25 @@
     <li>Bảo vệ các bệnh xương khớp, thoái hóa.</li>
     <p class="mb-0">👉 Đóng phí 15 năm và <span class="fw-bold">bảo vệ 25 năm.</span></p>
     <p>👉 Qũy học đường cho con sau <span class="fw-bold">15 năm: 300 triệu.</span></p>
+  </div>
+</ng-template>
+
+<ng-template #dialogTempAnphuchungthinh let-data>
+  <div class="content bg-custom ps-4 pe-2">
+    <h2 class="text-danger text-center text-uppercase">gói bh cho an phúc hưng thịnh toàn diện</h2>
+    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN TÂM SONG HÀNH.</h3>
+    <ul class="mb-0">
+      <li>Tham gia cho mọi độ tuổi.</li>
+      <li>Phí: <span class="fw-bold">10 triệu/ năm.</span></li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Nhân thọ bảo vệ sinh mệnh: từ 100tr – 150tr</h3>
+    <ul class="mb-0">
+      <li>Thẻ chăm sóc sức khoẻ nội trú cao cấp: chi trả 100% chi phí điều trị.</li>
+    </ul>
+    <h3 class="text-danger mb-0">✔ Thẻ ngoại trú: thanh toán thực tế các chi phí khám + đơn thuốc</h3>
+    <ul class="mb-0">
+      <li>Hỗ trợ viện phí: <span class="fw-bold">300->500k/ ngày nằm viện</span></li>
+    </ul>
   </div>
 </ng-template>
 
