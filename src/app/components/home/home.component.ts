@@ -352,11 +352,15 @@ export class HomeComponent implements OnInit {
 
   public addClass(): void{
     const menuMobile = this.el.nativeElement.querySelector(".menu-mobile");
+    const overlay = this.el.nativeElement.querySelector(".overlay");
     this.render.addClass(menuMobile, 'show');
+    this.render.addClass(overlay, 'opened');
   }
 
   public removeClass(): void {
     const menuMobile = this.el.nativeElement.querySelector(".menu-mobile");
+    const overlay = this.el.nativeElement.querySelector(".overlay");
     this.render.removeClass(menuMobile, 'show');
+    this.render.removeClass(overlay, 'opened');
   }
 }
