@@ -1,4 +1,5 @@
 <div class="home" id="home">
+<!--  <button class="btn btn-primary" (click)="timeCount()">Timer</button>-->
   <div class="icon-group">
     <div class="icon-custom">
       <a href="tel:0973903463">
@@ -152,7 +153,7 @@
           }
         </div>
         <div class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex align-items-center justify-content-center">
-          <button class="btn btn-warning text-uppercase fw-bold gradient-button">tư vấn ngay</button>
+          <button class="btn btn-warning text-uppercase fw-bold gradient-button" (click)="scrollTo('register-form')">tư vấn ngay</button>
         </div>
       </div>
     </article>
@@ -365,6 +366,8 @@
                   </div>
                 }
                 <h1 class="voucher text-white text-center">TẶNG NGAY VOUCHER 20% KHI ĐĂNG KÝ NGAY HÔM NAY</h1>
+                <app-countdown-timer></app-countdown-timer>
+
                 <!--                <p class="text-white text-center text-uppercase fs-5 demo-time">{{timeNow}}</p>-->
               </div>
             </div>
@@ -475,7 +478,7 @@
 <ng-template #dialogTempAnphuchungthinh let-data>
   <div class="content bg-custom ps-4 pe-2">
     <h2 class="text-danger text-center text-uppercase">gói bh cho an phúc hưng thịnh toàn diện</h2>
-    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN TÂM SONG HÀNH.</h3>
+    <h3 class="text-danger mb-0">❤ SẢN PHẨM AN PHÚC HƯNG THỊNH TOÀN DIỆN.</h3>
     <ul class="mb-0">
       <li>Tham gia cho mọi độ tuổi.</li>
       <li>Phí: <span class="fw-bold">10 triệu/ năm.</span></li>

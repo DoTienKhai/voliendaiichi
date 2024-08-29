@@ -1,9 +1,13 @@
-import {Component, ElementRef, inject, OnInit, Renderer2, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, Renderer2, signal, TemplateRef, ViewChild} from '@angular/core';
 import {DatePipe, NgClass, NgOptimizedImage, NgStyle} from "@angular/common";
 import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
+import internal from "node:stream";
+import {interval, Subscription, timeInterval, timer} from "rxjs";
+import {CountdownTimerComponent} from "../countdown-timer/countdown-timer.component";
+import {Router} from "@angular/router";
 
 type ListFollowPack = {
   id?: number,
@@ -22,6 +26,7 @@ type ListFollowPack = {
     NgClass,
     DatePipe,
     ReactiveFormsModule,
+    CountdownTimerComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -37,6 +42,7 @@ export class HomeComponent implements OnInit {
   public reactiveForm: FormGroup;
   public endDate = new Date();
   public timeNow = new Date();
+  public countdown: number = 1000;
   public lsCategories: { name: string, href: string }[] = [
     // {name: 'Trang chủ', id: 'home'},
     // {name: 'Sản phẩm', id: 'product'},
@@ -53,7 +59,7 @@ export class HomeComponent implements OnInit {
   public lsExperience: { name: string, value: string, value2?: string }[] = [
     {name: '8 năm', value: 'Trong ngành BHNT, xử lý bồi thường nhanh 24/24.'},
     {name: '500 KH', value: 'Hiện đang chăm sóc 500 khách hàng trên toàn quốc.'},
-    {name: 'top 1', value: 'Top 1 tư vấn khu vực HB', value2: 'Top 5 tư vấn xuất sắc nhất toàn quốc.'},
+    {name: 'top 1', value: 'Top 1 tư vấn khu vực HB', value2: 'Top MDRT tư vấn xuất sắc nhất toàn quốc.'},
   ];
 
   public lsImagesCarousel: { url: string, alt: string }[] = [
@@ -212,7 +218,7 @@ export class HomeComponent implements OnInit {
     },
     {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 24 24" fill="#051F4D"> <path d="M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8L12,13L20,8V18M20,6L12,11L4,6V6H20V6Z"></path> </svg>',
-      title: `<a href="mailto:voliendaiichi1989@gmail.com">voleindaiichi1989@gmail.com</a>`
+      title: `<a href="mailto:voliendaiichi1989@gmail.com">voliendaiichi1989@gmail.com</a>`
     },
     {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 24 24" fill="#051F4D"> <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path> </svg>',
@@ -227,7 +233,7 @@ export class HomeComponent implements OnInit {
   ];
   private readonly dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private el: ElementRef,private sanitizer: DomSanitizer, private render: Renderer2) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private el: ElementRef,private sanitizer: DomSanitizer, private render: Renderer2, private route: Router) {
     this.endDate.setHours(23, 59, 59, 999);
     // name: 1182818327
     // sdt: 1361392576
@@ -256,7 +262,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // setInterval(() => this.timeNow = new Date(), 1000);
+
+  }
+
+  public timeCount(): void {
+    this.route.navigate(['volien-daiichi/time']);
   }
 
   private startCountdown(date: string): void{
