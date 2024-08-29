@@ -4,9 +4,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
-import internal from "node:stream";
-import {interval, Subscription, timeInterval, timer} from "rxjs";
-import {CountdownTimerComponent} from "../countdown-timer/countdown-timer.component";
 import {Router} from "@angular/router";
 
 type ListFollowPack = {
@@ -26,7 +23,6 @@ type ListFollowPack = {
     NgClass,
     DatePipe,
     ReactiveFormsModule,
-    CountdownTimerComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
